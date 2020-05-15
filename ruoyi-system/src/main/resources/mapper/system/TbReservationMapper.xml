@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.TbReservationMapper">
+
+    <resultMap type="TbReservation" id="TbReservationResult">
+        <id property="id"    column="id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="name"    column="name"    />
+        <result property="age"    column="age"    />
+        <result property="schoolName"    column="school_name"    />
+        <result property="className"    column="class_name"    />
+        <result property="phone"    column="phone"    />
+        <result property="receptionTime"    column="reception_time"    />
+        <result property="isPassed"    column="is_passed"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="updateBy"    column="update_by"    />
+    </resultMap>
+
+    <sql id="selectTbReservationVo">
+        select id, user_id, name, age, school_name, class_name, phone, reception_time, is_passed, create_time, create_by, update_time, update_by from tb_reservation
+    </sql>
+
+    <select id="selectTbReservationList" parameterType="TbReservation" resultMap="TbReservationResult">
+        <include refid="selectTbReservationVo"/>
+        <where>
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="age != null "> and age = #{age}</if>
+            <if test="schoolName != null  and schoolName != ''"> and school_name like concat('%', #{schoolName}, '%')</if>
+            <if test="className != null  and className != ''"> and class_name like concat('%', #{className}, '%')</if>
+            <if test="phone != null  and phone != ''"> and phone = #{phone}</if>
+            <if test="receptionTime != null "> and reception_time = #{receptionTime}</if>
+            <if test="isPassed != null "> and is_passed = #{isPassed}</if>
+        </where>
+    </select>
+
+    <select id="selectTbReservationById" parameterType="Long" resultMap="TbReservationResult">
+        <include refid="selectTbReservationVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertTbReservation" parameterType="TbReservation">
+        insert into tb_reservation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null ">user_id,</if>
+            <if test="name != null  and name != ''">name,</if>
+            <if test="age != null ">age,</if>
+            <if test="schoolName != null  and schoolName != ''">school_name,</if>
+            <if test="className != null  and className != ''">class_name,</if>
+            <if test="phone != null  and phone != ''">phone,</if>
+            <if test="receptionTime != null ">reception_time,</if>
+            <if test="isPassed != null ">is_passed,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="createBy != null  and createBy != ''">create_by,</if>
+            <if test="updateTime != null ">update_time,</if>
+            <if test="updateBy != null  and updateBy != ''">update_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null ">#{userId},</if>
+            <if test="name != null  and name != ''">#{name},</if>
+            <if test="age != null ">#{age},</if>
+            <if test="schoolName != null  and schoolName != ''">#{schoolName},</if>
+            <if test="className != null  and className != ''">#{className},</if>
+            <if test="phone != null  and phone != ''">#{phone},</if>
+            <if test="receptionTime != null ">#{receptionTime},</if>
+            <if test="isPassed != null ">#{isPassed},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="createBy != null  and createBy != ''">#{createBy},</if>
+            <if test="updateTime != null ">#{updateTime},</if>
+            <if test="updateBy != null  and updateBy != ''">#{updateBy},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTbReservation" parameterType="TbReservation">
+        update tb_reservation
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userId != null ">user_id = #{userId},</if>
+            <if test="name != null  and name != ''">name = #{name},</if>
+            <if test="age != null ">age = #{age},</if>
+            <if test="schoolName != null  and schoolName != ''">school_name = #{schoolName},</if>
+            <if test="className != null  and className != ''">class_name = #{className},</if>
+            <if test="phone != null  and phone != ''">phone = #{phone},</if>
+            <if test="receptionTime != null ">reception_time = #{receptionTime},</if>
+            <if test="isPassed != null ">is_passed = #{isPassed},</if>
+            <if test="createTime != null ">create_time = #{createTime},</if>
+            <if test="createBy != null  and createBy != ''">create_by = #{createBy},</if>
+            <if test="updateTime != null ">update_time = #{updateTime},</if>
+            <if test="updateBy != null  and updateBy != ''">update_by = #{updateBy},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTbReservationById" parameterType="Long">
+        delete from tb_reservation where id = #{id}
+    </delete>
+
+    <delete id="deleteTbReservationByIds" parameterType="String">
+        delete from tb_reservation where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>
