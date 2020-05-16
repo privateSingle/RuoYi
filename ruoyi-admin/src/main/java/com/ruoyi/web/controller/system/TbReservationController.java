@@ -1,10 +1,12 @@
 package com.ruoyi.web.controller.system;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.ruoyi.system.domain.SysRole;
 import com.ruoyi.system.domain.SysUser;
 import com.ruoyi.system.service.ISysRoleService;
+import com.ruoyi.web.controller.vo.TbReservationVo;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
@@ -79,12 +81,50 @@ public class TbReservationController extends BaseController
         if (isAdmin){
             //管理员数据
             List<TbReservation> list = tbReservationService.selectTbReservationList(tbReservation);
-            return getDataTable(list);
+            List<TbReservationVo> collect = list.stream().map(res -> {
+                TbReservationVo tbReservationVo = new TbReservationVo();
+                tbReservationVo.setId(res.getId());
+                tbReservationVo.setUserId(res.getUserId());
+                tbReservationVo.setName(res.getName());
+                tbReservationVo.setAge(res.getAge());
+                tbReservationVo.setSchoolName(res.getSchoolName());
+                tbReservationVo.setClassName(res.getClassName());
+                tbReservationVo.setPhone(res.getPhone());
+                tbReservationVo.setReceptionTime(res.getReceptionTime());
+                if (res.getIsPassed() == 1) {
+                    tbReservationVo.setIsPassed("是");
+                } else if (res.getIsPassed() == 0) {
+                    tbReservationVo.setIsPassed("否");
+                }
+                return tbReservationVo;
+
+
+            }).collect(Collectors.toList());
+            return getDataTable(collect);
         }else {
             //用户数据
             tbReservation.setUserId(user.getUserId());
             List<TbReservation> list = tbReservationService.selectTbReservationList(tbReservation);
-            return getDataTable(list);
+            List<TbReservationVo> collect = list.stream().map(res -> {
+                TbReservationVo tbReservationVo = new TbReservationVo();
+                tbReservationVo.setId(res.getId());
+                tbReservationVo.setUserId(res.getUserId());
+                tbReservationVo.setName(res.getName());
+                tbReservationVo.setAge(res.getAge());
+                tbReservationVo.setSchoolName(res.getSchoolName());
+                tbReservationVo.setClassName(res.getClassName());
+                tbReservationVo.setPhone(res.getPhone());
+                tbReservationVo.setReceptionTime(res.getReceptionTime());
+                if (res.getIsPassed() == 1) {
+                    tbReservationVo.setIsPassed("是");
+                } else if (res.getIsPassed() == 0) {
+                    tbReservationVo.setIsPassed("否");
+                }
+                return tbReservationVo;
+
+
+            }).collect(Collectors.toList());
+            return getDataTable(collect);
         }
 
     }

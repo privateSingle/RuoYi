@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.TbStudentEntryMapper">
+    
+    <resultMap type="TbStudentEntry" id="TbStudentEntryResult">
+        <result property="id"    column="id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="province"    column="province"    />
+        <result property="num"    column="num"    />
+        <result property="phone"    column="phone"    />
+        <result property="qq"    column="qq"    />
+        <result property="grade"    column="grade"    />
+        <result property="questionClass"    column="question_class"    />
+        <result property="advisory"    column="advisory"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+
+    <sql id="selectTbStudentEntryVo">
+        select id, user_id, province, num, phone, qq, grade, question_class, advisory, remark from tb_student_entry
+    </sql>
+
+    <select id="selectTbStudentEntryList" parameterType="TbStudentEntry" resultMap="TbStudentEntryResult">
+        <include refid="selectTbStudentEntryVo"/>
+        <where>  
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="province != null  and province != ''"> and province = #{province}</if>
+            <if test="num != null  and num != ''"> and num = #{num}</if>
+            <if test="phone != null  and phone != ''"> and phone = #{phone}</if>
+            <if test="qq != null  and qq != ''"> and qq = #{qq}</if>
+            <if test="grade != null  and grade != ''"> and grade = #{grade}</if>
+            <if test="questionClass != null  and questionClass != ''"> and question_class = #{questionClass}</if>
+            <if test="advisory != null  and advisory != ''"> and advisory = #{advisory}</if>
+        </where>
+    </select>
+    
+    <select id="selectTbStudentEntryById" parameterType="Long" resultMap="TbStudentEntryResult">
+        <include refid="selectTbStudentEntryVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertTbStudentEntry" parameterType="TbStudentEntry" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_student_entry
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null ">user_id,</if>
+            <if test="province != null  and province != ''">province,</if>
+            <if test="num != null  and num != ''">num,</if>
+            <if test="phone != null  and phone != ''">phone,</if>
+            <if test="qq != null  and qq != ''">qq,</if>
+            <if test="grade != null  and grade != ''">grade,</if>
+            <if test="questionClass != null  and questionClass != ''">question_class,</if>
+            <if test="advisory != null  and advisory != ''">advisory,</if>
+            <if test="remark != null  and remark != ''">remark,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null ">#{userId},</if>
+            <if test="province != null  and province != ''">#{province},</if>
+            <if test="num != null  and num != ''">#{num},</if>
+            <if test="phone != null  and phone != ''">#{phone},</if>
+            <if test="qq != null  and qq != ''">#{qq},</if>
+            <if test="grade != null  and grade != ''">#{grade},</if>
+            <if test="questionClass != null  and questionClass != ''">#{questionClass},</if>
+            <if test="advisory != null  and advisory != ''">#{advisory},</if>
+            <if test="remark != null  and remark != ''">#{remark},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTbStudentEntry" parameterType="TbStudentEntry">
+        update tb_student_entry
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userId != null ">user_id = #{userId},</if>
+            <if test="province != null  and province != ''">province = #{province},</if>
+            <if test="num != null  and num != ''">num = #{num},</if>
+            <if test="phone != null  and phone != ''">phone = #{phone},</if>
+            <if test="qq != null  and qq != ''">qq = #{qq},</if>
+            <if test="grade != null  and grade != ''">grade = #{grade},</if>
+            <if test="questionClass != null  and questionClass != ''">question_class = #{questionClass},</if>
+            <if test="advisory != null  and advisory != ''">advisory = #{advisory},</if>
+            <if test="remark != null  and remark != ''">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteTbStudentEntryById" parameterType="Long">
+        delete from tb_student_entry where id = #{id}
+    </delete>
+
+    <delete id="deleteTbStudentEntryByIds" parameterType="String">
+        delete from tb_student_entry where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

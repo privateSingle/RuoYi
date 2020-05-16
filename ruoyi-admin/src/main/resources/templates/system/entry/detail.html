@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<th:block th:include="include :: header('操作日志详细')" />
+	<th:block th:include="include :: jsonview-css" />
+</head>
+<body class="white-bg">
+	<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+	<form class="form-horizontal m-t" id="signupForm">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">省份：</label>
+			<div class="form-control-static" th:text="${entry.province}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">考生号：</label>
+			<div class="form-control-static" th:text="${entry.num}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">电话：</label>
+			<div class="form-control-static" th:text="${entry.phone}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">qq：</label>
+			<div class="form-control-static" th:text="${entry.qq}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">成绩：</label>
+			<div class="form-control-static" th:text="${entry.grade}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">问题分类：</label>
+			<div class="form-control-static" th:text="${entry.questionClass}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">咨询：</label>
+			<div class="form-control-static" th:text="${entry.advisory}">
+			</div>
+		</div>
+	</form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <th:block th:include="include :: jsonview-js" />
+    <script th:inline="javascript">
+
+    </script>
+</body>
+</html>
