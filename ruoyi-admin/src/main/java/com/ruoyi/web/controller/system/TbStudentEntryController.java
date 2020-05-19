@@ -101,6 +101,7 @@ TbStudentEntryController extends BaseController
     @ResponseBody
     public AjaxResult addSave(TbStudentEntry tbStudentEntry)
     {
+        tbStudentEntry.setUserId(getUser().getUserId());
         if (getRole().getRoleId()!=1){
             TbStudentEntry tbStudentEntry1=new TbStudentEntry();
             tbStudentEntry1.setUserId(getUser().getUserId());
@@ -111,7 +112,6 @@ TbStudentEntryController extends BaseController
                 return AjaxResult.error("您已经录入过信息不能再次录入");
             }
         }
-        tbStudentEntry.setUserId(getUser().getUserId());
         return toAjax(tbStudentEntryService.insertTbStudentEntry(tbStudentEntry));
 
     }

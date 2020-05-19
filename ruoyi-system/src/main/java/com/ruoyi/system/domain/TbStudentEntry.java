@@ -7,7 +7,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
 
 /**
  * 学生录入对象 tb_student_entry
- * 
+ *
  * @author ruoyi
  * @date 2020-05-15
  */
@@ -49,102 +49,113 @@ public class TbStudentEntry extends BaseEntity
     /** 咨询 */
     @Excel(name = "咨询")
     private String advisory;
+    @Excel(name = "学生姓名")
+    private String studentName;
 
-    public void setId(Long id) 
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setId(Long id)
     {
         this.id = id;
     }
 
-    public Long getId() 
+    public Long getId()
     {
         return id;
     }
-    public void setUserId(Long userId) 
+    public void setUserId(Long userId)
     {
         this.userId = userId;
     }
 
-    public Long getUserId() 
+    public Long getUserId()
     {
         return userId;
     }
-    public void setProvince(String province) 
+    public void setProvince(String province)
     {
         this.province = province;
     }
 
-    public String getProvince() 
+    public String getProvince()
     {
         return province;
     }
-    public void setNum(String num) 
+    public void setNum(String num)
     {
         this.num = num;
     }
 
-    public String getNum() 
+    public String getNum()
     {
         return num;
     }
-    public void setPhone(String phone) 
+    public void setPhone(String phone)
     {
         this.phone = phone;
     }
 
-    public String getPhone() 
+    public String getPhone()
     {
         return phone;
     }
-    public void setQq(String qq) 
+    public void setQq(String qq)
     {
         this.qq = qq;
     }
 
-    public String getQq() 
+    public String getQq()
     {
         return qq;
     }
-    public void setGrade(String grade) 
+    public void setGrade(String grade)
     {
         this.grade = grade;
     }
 
-    public String getGrade() 
+    public String getGrade()
     {
         return grade;
     }
-    public void setQuestionClass(String questionClass) 
+    public void setQuestionClass(String questionClass)
     {
         this.questionClass = questionClass;
     }
 
-    public String getQuestionClass() 
+    public String getQuestionClass()
     {
         return questionClass;
     }
-    public void setAdvisory(String advisory) 
+    public void setAdvisory(String advisory)
     {
         this.advisory = advisory;
     }
 
-    public String getAdvisory() 
+    public String getAdvisory()
     {
         return advisory;
     }
 
+
     @Override
     public String toString() {
-        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("id", getId())
-            .append("userId", getUserId())
-            .append("province", getProvince())
-            .append("num", getNum())
-            .append("phone", getPhone())
-            .append("qq", getQq())
-            .append("grade", getGrade())
-            .append("questionClass", getQuestionClass())
-            .append("advisory", getAdvisory())
-            .append("remark", getRemark())
-            .toString();
+        return "TbStudentEntry{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", province='" + province + '\'' +
+                ", num='" + num + '\'' +
+                ", phone='" + phone + '\'' +
+                ", qq='" + qq + '\'' +
+                ", grade='" + grade + '\'' +
+                ", questionClass='" + questionClass + '\'' +
+                ", advisory='" + advisory + '\'' +
+                ", studentName='" + studentName + '\'' +
+                '}';
     }
 }

@@ -18,6 +18,11 @@
 			</div>
 		</div>
 		<div class="form-group">
+			<label class="col-sm-2 control-label">学生姓名：</label>
+			<div class="form-control-static" th:text="${entry.studentName}">
+			</div>
+		</div>
+		<div class="form-group">
 			<label class="col-sm-2 control-label">电话：</label>
 			<div class="form-control-static" th:text="${entry.phone}">
 			</div>
@@ -40,6 +45,11 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">咨询：</label>
 			<div class="form-control-static" th:text="${entry.advisory}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">备注：</label>
+			<div class="form-control-static" th:text="${entry.remark}">
 			</div>
 		</div>
 	</form>
